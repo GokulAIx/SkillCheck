@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Quiz Results</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f9;
+            color: #333;
+        }
+        .container {
+            max-width: 800px;
+            margin: 50px auto;
+            background: #fff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+        h1 {
+            text-align: center;
+            color: #444;
+        }
+        .score {
+            font-size: 1.2em;
+            margin: 20px 0;
+        }
+        .suggestions {
+            background: #f9f9f9;
+            border-left: 4px solid #007BFF;
+            padding: 15px;
+            border-radius: 4px;
+            margin: 20px 0;
+        }
+        a {
+            display: block;
+            text-align: center;
+            background: #007BFF;
+            color: white;
+            text-decoration: none;
+            padding: 10px 20px;
+            border-radius: 4px;
+            margin: 20px auto;
+            width: fit-content;
+        }
+        a:hover {
+            background: #0056b3;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Quiz Results</h1>
+        <p class="score">Your Score: <strong>{{ marks }}</strong> out of <strong>10</strong></p>
+        <div class="suggestions">
+            <h3>Suggestions:</h3>
+            <p>{{ suggestions[0] }}</p>
+        </div>
+        <a href="/">Take Another Quiz</a>
+    </div>
+</body>
+</html>

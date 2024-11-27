@@ -1,0 +1,23 @@
+domain,topic,question,options,canswer
+Coding,AI,What is AI?,"1. Artificial Intelligence,2. Automated Internet,3. Augmented Interaction,4. None of the above",Artificial Intelligence
+Coding,AI,Which is a type of machine learning?,"1. Supervised Learning,2. Unsupervised Learning,3. Reinforcement Learning,4. All of the above",All of the above
+Coding,AI,What is a neural network?,"1. A type of AI,2. A biological brain,3. A programming language,4. None of the above",A type of AI
+Coding,AI,What does NLP stand for in AI?,"1. Natural Language Processing,2. Non-linear Programming,3. Neural Learning Process,4. None of the above",Natural Language Processing
+Coding,AI,Which of the following is a deep learning framework?,"1. TensorFlow,2. Django,3. Flask,4. React",TensorFlow
+Coding,AI,What is overfitting in machine learning?,"1. Model performs well on training data but poorly on test data,2. Model performs poorly on both training and test data,3. Model is too simple to learn,4. Model generalizes well to new data",Model performs well on training data but poorly on test data
+Coding,AI,Which algorithm is used for classification in machine learning?,"1. Linear Regression,2. K-Nearest Neighbors,3. K-Means Clustering,4. Naive Bayes",K-Nearest Neighbors
+Coding,AI,What does a confusion matrix help to measure in machine learning?,"1. Accuracy,2. Precision,3. Recall,4. All of the above",All of the above
+Coding,AI,What is reinforcement learning?,"1. Learning by observing,2. Learning by trial and error,3. Learning through instruction,4. None of the above",Learning by trial and error
+Coding,AI,What is the main goal of AI?,"1. To create machines that think like humans,2. To create machines that work faster than humans,3. To create robots,4. None of the above",To create machines that think like humans
+Marketing,Digital Marketing,What is SEO in digital marketing?,"1. Search Engine Optimization,2. Search Engine Operation,3. Software Evaluation Optimization,4. None of the above",Search Engine Optimization
+Marketing,Digital Marketing,What does PPC stand for in digital marketing?,"1. Pay Per Click,2. Pay Per Conversion,3. Purchase Per Click,4. None of the above",Pay Per Click
+Marketing,Digital Marketing,Which platform is known for its professional networking in digital marketing?,"1. Facebook,2. LinkedIn,3. Instagram,4. Twitter",LinkedIn
+Marketing,Digital Marketing,What is the purpose of Google Analytics?,"1. To track website traffic,2. To optimize website design,3. To create ads,4. To generate content",To track website traffic
+Marketing,Digital Marketing,What is content marketing?,"1. Marketing through ads,2. Marketing through content like blogs, videos, and social media,3. Marketing through email newsletters,4. None of the above",Marketing through content like blogs videos and social media
+Marketing,Digital Marketing,What is an influencer in digital marketing?,"1. A person with the ability to affect the purchasing decisions of others,2. A person who writes blogs,3. A person who runs Google ads,4. None of the above",A person with the ability to affect the purchasing decisions of others
+Marketing,Digital Marketing,What is email marketing?,"1. Sending promotional emails to a list of contacts,2. Sending text messages,3. Writing blog posts,4. Using social media to promote",Sending promotional emails to a list of contacts
+Marketing,Digital Marketing,Which platform is primarily used for video content in digital marketing?,"1. YouTube,2. Facebook,3. Twitter,4. LinkedIn",YouTube
+Marketing,Digital Marketing,What does CPC stand for in digital marketing?,"1. Cost Per Conversion,2. Cost Per Click,3. Cost Per Content,4. Cost Per Campaign",Cost Per Click
+Marketing,Digital Marketing,What is social media marketing?,"1. Marketing through TV ads,2. Marketing through radio,3. Marketing through platforms like Facebook, Instagram, and Twitter,4. None of the above",Marketing through platforms like Facebook, Instagram, and Twitter
+Marketing,Digital Marketing,What is affiliate marketing?,"1. Promoting products for a commission,2. Selling your own products,3. Using paid ads to promote products,4. None of the above",Promoting products for a commission
+Marketing,Digital Marketing,What is the main goal of digital marketing?,"1. To sell products only,2. To build brand awareness and generate leads,3. To collect personal data,4. None of the above",To build brand awareness and generate leads

@@ -1,0 +1,132 @@
+/* General Styles */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f4f4f9;
+    color: #333;
+}
+
+/* Header Styles - Big centered name */
+.container h1 {
+    font-size: 60px; /* Large font size */
+    font-weight: bold; /* Bold text */
+    text-align: center; /* Center-align text */
+    background-color: #3498db; /* Blue background */
+    color: white; /* White text */
+    padding: 20px 0; /* Add padding for spacing */
+    margin-bottom: 20px; /* Space below the header */
+    border-radius: 8px; /* Optional: Rounded corners for a smoother look */
+}
+
+/* Container for the form */
+.container {
+    max-width: 900px;
+    margin: 30px auto;
+    padding: 20px;
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+/* Form */
+form {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+label {
+    font-size: 18px;
+    margin-bottom: 8px;
+}
+
+select {
+    padding: 10px;
+    font-size: 16px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+
+button {
+    padding: 12px 20px;
+    font-size: 18px;
+    background-color: #2980b9;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+button:hover {
+    background-color: #21618c;
+}
+
+/* Footer */
+footer {
+    text-align: center;
+    margin-top: 40px;
+    font-size: 14px;
+    color: #7f8c8d;
+}
+
+
+/* General styles for the quiz container */
+.quiz-container {
+    width: 80%; /* Adjust the width to make the container smaller and create space on both sides */
+    margin: 0 auto; /* Centers the quiz container */
+    padding-left: 20px; /* Adds space to the left to move everything slightly to the right */
+}
+
+/* Styling the quiz title with a blue background */
+.quiz-container h1 {
+    text-align: center;
+    font-size: 24px;
+    margin-bottom: 20px;
+    padding: 10px; /* Adds some padding around the title */
+    background-color: #007BFF; /* Blue background */
+    color: white; /* White text color for contrast */
+    border-radius: 5px; /* Optional: rounded corners */
+}
+
+/* Styling each question section */
+.quiz-container .question {
+    margin-bottom: 20px; /* Adds space between each question */
+}
+
+/* Styling the list of options for each question */
+.quiz-container .question ul {
+    list-style-type: none; /* Removes default bullet points */
+    padding-left: 20px; /* Adds padding to the left of the options */
+}
+
+.quiz-container .question li {
+    margin-bottom: 10px; /* Adds space between each option */
+}
+
+/* Styling the radio button inputs */
+.quiz-container input[type="radio"] {
+    margin-right: 10px; /* Adds space between the radio button and the label */
+}
+
+/* Styling the submit button */
+.quiz-container button[type="submit"] {
+    display: block;
+    margin: 20px auto;
+    padding: 10px 20px;
+    font-size: 16px;
+    cursor: pointer;
+    background-color: #4CAF50; /* Green button */
+    color: white;
+    border: none;
+    border-radius: 5px;
+}
+
+.quiz-container button[type="submit"]:hover {
+    background-color: #45a049; /* Darker green on hover */
+}

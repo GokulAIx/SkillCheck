@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SkillCheck</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+    <script>
+        // JavaScript function to dynamically update topics based on selected domain
+        function updateTopics() {
+            var domain = document.getElementById("domain").value;
+            var topicSelect = document.getElementById("topic");
+
+            // Clear existing topics
+            topicSelect.innerHTML = "";
+
+            // Add new options based on the domain selected
+            if (domain === "Coding") {
+                var option1 = document.createElement("option");
+                option1.value = "AI";
+                option1.text = "AI";
+                topicSelect.appendChild(option1);
+            } else if (domain === "Marketing") {
+                var option2 = document.createElement("option");
+                option2.value = "Digital Marketing";
+                option2.text = "Digital Marketing";
+                topicSelect.appendChild(option2);
+            }
+        }
+    </script>
+</head>
+<body>
+    <div class="container">
+        <h1>SkillCheck</h1>
+        <p>Select your domain to assess your skills!</p>
+
+        <form action="/quiz" method="get">
+            <label for="domain">Choose Domain:</label>
+            <select name="domain" id="domain" onchange="updateTopics()">
+                <option value="Coding">Coding</option>
+                <option value="Marketing">Marketing</option> <!-- Added Marketing domain -->
+            </select><br>
+
+            <label for="topic">Choose Topic:</label>
+            <select name="topic" id="topic">
+                <option value="AI">AI</option>
+                <!-- Topics will be dynamically updated based on the domain -->
+            </select><br>
+
+            <button type="submit">Start Quiz</button>
+        </form>
+    </div>
+</body>
+</html>

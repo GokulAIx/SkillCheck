@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ domain }} - {{ topic }} Quiz</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+</head>
+<body>
+    <div class="quiz-container">
+        <h1>{{ domain }} - {{ topic }} Quiz</h1>
+
+        {% if questions %}
+        <form method="POST" action="/submit">
+            <!-- Add hidden inputs for domain and topic -->
+            <input type="hidden" name="domain" value="{{ domain }}">
+            <input type="hidden" name="topic" value="{{ topic }}">
+        
+            {% for question in questions %}
+                <div class="question">
+                    <h2>Question {{ loop.index }}: {{ question['question'] }}</h2>
+                    <div>
+                        <label for="answer_{{ loop.index }}">Choose your answer:</label>
+                        <select name="answer_{{ loop.index }}" id="answer_{{ loop.index }}">
+                            {% set options = question['options'].split(",") %}
+                            {% for option in options %}
+                                <option value="{{ option }}">{{ option }}</option>
+                            {% endfor %}
+                        </select>
+                    </div>
+                </div>
+            {% endfor %}
+            <button type="submit">Submit Quiz</button>
+        </form>
+        {% else %}
+        <p>No questions available for this topic.</p>
+        {% endif %}
+    </div>
+</body>
+</html>
