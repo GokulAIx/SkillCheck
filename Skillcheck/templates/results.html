@@ -6,60 +6,180 @@
     <title>Quiz Results</title>
     <style>
         body {
-            font-family: Arial, sans-serif;
+            font-family: 'Arial', sans-serif;
             margin: 0;
             padding: 0;
             background-color: #f4f4f9;
             color: #333;
+            line-height: 1.6;
         }
         .container {
             max-width: 800px;
             margin: 50px auto;
-            background: #fff;
-            padding: 20px;
-            border-radius: 8px;
-            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            background: #ffffff;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
         }
         h1 {
             text-align: center;
-            color: #444;
+            color: #2c3e50;
+            border-bottom: 2px solid #3498db;
+            padding-bottom: 10px;
         }
         .score {
             font-size: 1.2em;
             margin: 20px 0;
-        }
-        .suggestions {
-            background: #f9f9f9;
-            border-left: 4px solid #007BFF;
-            padding: 15px;
-            border-radius: 4px;
-            margin: 20px 0;
-        }
-        a {
-            display: block;
             text-align: center;
-            background: #007BFF;
+            background-color: #e7f3fe;
+            padding: 15px;
+            border-radius: 5px;
+        }
+        .score strong {
+            color: #2980b9;
+        }
+        .explanations {
+            background: #f9f9f9;
+            border-left: 5px solid #3498db;
+            padding: 20px;
+            margin: 20px 0;
+            border-radius: 5px;
+            max-height: 400px;
+            overflow-y: auto;
+        }
+        .explanations::-webkit-scrollbar {
+            width: 8px;
+        }
+        .explanations::-webkit-scrollbar-track {
+            background: #f1f1f1;
+            border-radius: 10px;
+        }
+        .explanations::-webkit-scrollbar-thumb {
+            background: #3498db;
+            border-radius: 10px;
+        }
+        .explanations h3 {
+            color: #2c3e50;
+            margin-top: 0;
+            border-bottom: 1px solid #bdc3c7;
+            padding-bottom: 10px;
+        }
+        .explanations ul {
+            padding: 0;
+            list-style-type: none;
+        }
+        .explanations li {
+            margin-bottom: 25px;
+            padding: 20px;
+            background-color: #ffffff;
+            border-radius: 8px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            border-left: 5px solid #3498db;
+            position: relative;
+        }
+        .explanations li .question-topic {
+            color: #2980b9;
+            font-weight: bold;
+            font-size: 1.1em;
+            margin-bottom: 10px;
+            display: block;
+        }
+        .explanations li .wrong-indicator {
+            color: #e74c3c;
+            margin-bottom: 10px;
+            display: block;
+        }
+        .explanations li .answer-details {
+            margin-bottom: 15px;
+        }
+        .explanations li .correct-answer {
+            color: #2ecc71;
+            font-weight: bold;
+        }
+        .explanations li .wrong-answer {
+            color: #e74c3c;
+            font-weight: bold;
+        }
+        .explanations li .explanation-text {
+            color: #2c3e50;
+            font-style: italic;
+            margin-bottom: 15px;
+        }
+        .actions {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            margin-top: 30px;
+        }
+        .btn {
+            display: inline-block;
+            padding: 12px 25px;
+            background-color: #3498db;
             color: white;
             text-decoration: none;
-            padding: 10px 20px;
-            border-radius: 4px;
-            margin: 20px auto;
-            width: fit-content;
+            border-radius: 5px;
+            transition: background-color 0.3s ease;
         }
-        a:hover {
-            background: #0056b3;
+        .btn:hover {
+            background-color: #2980b9;
+        }
+        .performance-rating {
+            text-align: center;
+            margin: 20px 0;
+            font-size: 1.1em;
+        }
+        @media (max-width: 600px) {
+            .container {
+                margin: 20px 10px;
+                padding: 20px;
+            }
+            .actions {
+                flex-direction: column;
+                align-items: center;
+            }
+            .explanations {
+                max-height: 300px;
+            }
         }
     </style>
 </head>
 <body>
     <div class="container">
         <h1>Quiz Results</h1>
-        <p class="score">Your Score: <strong>{{ marks }}</strong> out of <strong>10</strong></p>
-        <div class="suggestions">
-            <h3>Suggestions:</h3>
-            <p>{{ suggestions[0] }}</p>
+        
+        <div class="score">
+            Your Score: <strong>{{ marks }}</strong> out of <strong>{{ total_questions }}</strong>
         </div>
-        <a href="/">Take Another Quiz</a>
+
+        <div class="performance-rating">
+            {% if marks/total_questions * 100 >= 90 %}
+                <p>🏆 Excellent Performance! Outstanding job!</p>
+            {% elif marks/total_questions * 100 >= 75 %}
+                <p>👍 Great Work! Keep improving!</p>
+            {% elif marks/total_questions * 100 >= 60 %}
+                <p>📖 Good Effort! Room for improvement.</p>
+            {% else %}
+                <p>🔍 Let's review and learn more!</p>
+            {% endif %}
+        </div>
+
+        <div class="explanations">
+            <h3>Explanations for Incorrect Answers</h3>
+            {% if explanations %}
+                <ul>
+                    {% for explanation in explanations %}
+                        <li>{{ explanation | safe }}</li>
+                    {% endfor %}
+                </ul>
+            {% else %}
+                <p>No incorrect answers. Great job!</p>
+            {% endif %}
+        </div>
+
+        <div class="actions">
+            <a href="/quiz?domain={{ domain }}&topic={{ topic }}" class="btn">Retake Quiz</a>
+            <a href="/" class="btn">Choose Another Quiz</a>
+        </div>
     </div>
 </body>
 </html>
