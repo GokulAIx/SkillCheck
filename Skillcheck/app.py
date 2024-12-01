@@ -9,7 +9,7 @@ app = Flask(__name__)
 
 # Groq API configuration
 API_URL = "https://api.groq.com/openai/v1/chat/completions"
-headers = {"Authorization": "Bearer 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", "Content-Type": "application/json"}
+headers = {"Authorization": "Bearer ", "Content-Type": "application/json"}
 
 # Set up logging
 logging.basicConfig(level=logging.INFO)
