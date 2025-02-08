@@ -7,9 +7,9 @@ from markupsafe import Markup
 # Initialize Flask app
 app = Flask(__name__)
 
-# Hugging Face API configuration
-API_URL = "https://api-inference.huggingface.co/models/google/flan-t5-large"
-headers = {"Authorization": "Bearer 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"}
+# Groq API configuration
+API_URL = "https://api.groq.com/openai/v1/chat/completions"
+headers = {"Authorization": "Bearer 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", "Content-Type": "application/json"}
 
 # Set up logging
 logging.basicConfig(level=logging.INFO)
@@ -33,34 +33,46 @@ def load_questions():
             logging.error(f"Error loading questions: {e}")
     return cached_questions
 
-# Function to get suggestions from AI for wrong answers
-# Function to get explanations from AI for wrong answers
+# Function to get explanations from Groq LLaMA model for wrong answers
 def get_explanations_from_ai(wrong_answers):
     if not wrong_answers:
         return ["No explanation needed. Great job!"]
 
     explanations = []
-    
+
     for question, user_answer, correct_answer in wrong_answers:
-        # Adjusted prompt to request an explanation instead of suggestions
-        prompt = f"Explain this quiz question and the reasoning behind the correct answer. Question: {question}, Correct Answer: {correct_answer}, User's Answer: {user_answer}. Provide a detailed explanation."
-        
+        # Adjusted prompt for LLaMA model to request an explanation
+        prompt = f"Explain this quiz question and the reasoning behind the correct answer. in 5 lines. Question: {question}, Correct Answer: {correct_answer}, User's Answer: {user_answer}. Provide a detailed explanation."
+
         try:
+            # API request to Groq model
             response = requests.post(
                 API_URL,
                 headers=headers,
-                json={"inputs": prompt, "parameters": {"max_new_tokens": 150, "temperature": 0.7, "top_p": 0.9}},
+                json={
+                    "model": "llama3-8b-8192",
+                    "messages": [{
+                        "role": "user",
+                        "content": prompt
+                    }]
+                },
             )
+
+            # Log the full response for debugging
+            if response.status_code != 200:
+                logging.error(f"API request failed with status code {response.status_code}: {response.text}")
 
             if response.status_code == 200:
                 response_data = response.json()
-                generated_text = response_data[0].get("generated_text", "").strip()
+                generated_text = response_data.get("choices", [{}])[0].get("message", {}).get("content", "").strip()
 
                 # Clean and extract the explanation
-                clean_explanation = generated_text.replace(prompt, "").strip()
+                clean_explanation = generated_text.strip()
 
                 if clean_explanation:
-                    explanations.append(f"**Question**: {question}\n**Correct Answer**: {correct_answer}.\n**Your Answer**: {user_answer}\n**Explanation**: {clean_explanation[:300]}")
+                    explanation_lines = clean_explanation.split("\n")
+                    formatted_explanation = "\n".join([line.strip() for line in explanation_lines if line.strip()])
+                    explanations.append(f"**Question**: {question}\n**Correct Answer**: {correct_answer}.\n**Your Answer**: {user_answer}\n**Explanation**: {formatted_explanation}")
                 else:
                     explanations.append(f"**Question**: {question}\n**Correct Answer**: {correct_answer}.\n**Your Answer**: {user_answer}\n**Explanation**: Review the reasoning behind the answer for better understanding.")
             else:
@@ -92,7 +104,6 @@ def quiz():
     return render_template("quiz.html", questions=questions, domain=domain, topic=topic)
 
 # Route to handle quiz submission
-# Route to handle quiz submission
 @app.route("/submit", methods=["POST"])
 def submit_quiz():
     domain = request.form.get("domain", "")
@@ -121,7 +132,6 @@ def submit_quiz():
         total_questions=len(current_questions),
         explanations=marked_explanations,
     )
-
 
 if __name__ == "__main__":
     app.run(debug=True)

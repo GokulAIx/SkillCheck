@@ -1,9 +1,8 @@
 import logging
 import requests
 import csv
+import random
 from flask import Flask, render_template, request
-from markupsafe import Markup
-
 # Initialize Flask app
 app = Flask(__name__)
 
@@ -88,7 +87,8 @@ def get_explanations_from_ai(wrong_answers):
 def get_questions(domain, topic):
     all_questions = load_questions()
     filtered_questions = [q for q in all_questions if q.get("domain", "").strip() == domain.strip() and q.get("topic", "").strip() == topic.strip()]
-    return filtered_questions
+    selected=random.sample(filtered_questions,5)
+    return selected
 
 # Home route
 @app.route("/")
